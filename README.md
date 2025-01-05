@@ -25,10 +25,10 @@ ORDER BY no_employees DESC;
 
 -- **2. How does salary vary by position, department, and location?**
 
-SELECT department, position, location, SUM(salary) AS sum_salaries
-FROM Staff
-GROUP BY department, position, location
-ORDER BY sum_salaries DESC;
+--SELECT department, position, location, SUM(salary) AS sum_salaries
+--FROM Staff
+--GROUP BY department, position, location
+--ORDER BY sum_salaries DESC;
 
 -- **3. Are there any trends in hiring dates based on departments or positions?**
 
