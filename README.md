@@ -16,9 +16,9 @@ order by no_employees desc
 
 ```sql
 select department ,
-       position , 
-	     location , 
-	   sum(salary) as sum_salaries
+       position ,
+       location , 
+       sum(salary) as sum_salaries
 from Staff
 group by department ,position, location
 order by sum_salaries desc
@@ -76,8 +76,8 @@ order by count_employees desc
 ## 9. Hiring Timeline and Company Growth
 ```sql
  select  staff_id,
-       AVG( DATEDIFF( YEAR ,date_hired, GETDATE()) ) as years, 
-	   avg (salary) as salary
+       avg( DATEDIFF( YEAR ,date_hired, GETDATE()) ) as years, 
+       avg (salary) as salary
 from Staff
 group by staff_id
 order by salary  desc
