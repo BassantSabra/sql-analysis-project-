@@ -4,41 +4,95 @@ At ZaxOil, a leading oil and gas company, you are tasked with exploring key insi
 
 
 ## 1. Employee Distribution Across Departments
-
-![Screenshot 2025-01-08 040614](https://github.com/user-attachments/assets/731eec1a-7417-4b1d-aff1-8bdd8572f582)
+```sql
+select department, 
+       count(staff_id) as no_employees
+from Staff
+group by department
+order by no_employees desc
+```
 
 ## 2. Salary Variation by Position, Department, and Location
 
-![Screenshot 2025-01-08 040623](https://github.com/user-attachments/assets/4a9dd134-f5cd-4ddc-9596-9cd640acfb81)
-
+```sql
+select department ,
+       position , 
+	     location , 
+	   sum(salary) as sum_salaries
+from Staff
+group by department ,position, location
+order by sum_salaries desc
+```
 
 ## 4. Relationship Between Staff Positions and Supervisors
-
-![Screenshot 2025-01-08 040648](https://github.com/user-attachments/assets/39ded131-69e3-4390-8707-6ffb020ee2ed)
+```sql
+ select position,
+        COUNT(staff_id) as no_of_employees
+ from Staff
+ where position LIKE 'Manager%' or position like 'Supervisor%'
+ group by position
+```
 
 ## 5. Salary Comparison by Job Location
-![Screenshot 2025-01-08 041002](https://github.com/user-attachments/assets/f598239b-565c-4c1d-96fb-09f49de70cca)
 
+```sql
+select location , 
+       avg(salary) as salary 
+from Staff 
+group by location
+order by salary desc
+```
 
 ## 6. Average Tenure by Department
-![Screenshot 2025-01-08 041047](https://github.com/user-attachments/assets/ee92f530-1739-4245-87a5-d55e75b819b8)
+```sql
+select department,
+       AVG( DATEDIFF( YEAR ,date_hired, GETDATE()) )as tenure_per_year  
+from Staff
+group by department
+order by tenure_per_year desc
+```
 
 
 ## 7. Salary Distribution by Role
-![Screenshot 2025-01-08 041150](https://github.com/user-attachments/assets/5e53395a-3cb3-4a93-b078-dd2102ab902f)
+```sql
+ select position , 
+       avg(salary) as salary 
+from Staff 
+group by position
+order by salary desc
+```
 
 
 ## 8. Headcount Distribution by Staff Level
+```sql
+select position , 
+       count(staff_id) as count_employees
+from Staff
+group by position
+order by count_employees desc
+```
 
-![Screenshot 2025-01-08 041300](https://github.com/user-attachments/assets/a1251288-627f-41f5-8686-40f1585585ac)
 
 ## 9. Hiring Timeline and Company Growth
+```sql
+ select  staff_id,
+       AVG( DATEDIFF( YEAR ,date_hired, GETDATE()) ) as years, 
+	   avg (salary) as salary
+from Staff
+group by staff_id
+order by salary  desc
+```
 
-![Screenshot 2025-01-08 041337](https://github.com/user-attachments/assets/035444eb-f07f-4a02-878e-4ea548278409)
 
 ## 10. Supervisor Hierarchy and Salary Structures
+```sql
+select  position , 
+        sum(salary)
+from staff
+where position = 'supervisor'
+group by position
+```
 
-![Screenshot 2025-01-08 041423](https://github.com/user-attachments/assets/4b267778-8fec-4d29-91d1-12bc902457eb)
 
 
 
